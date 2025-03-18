@@ -57,7 +57,13 @@ export const updateAnnouncement = async (id, announcementData, token) => {
 // ✅ Delete an announcement
 export const deleteAnnouncement = async (id, token) => {
   try {
-    if (!token) throw new Error("Unauthorized: Token is missing");
+    // 🔥 Fix: Get the token if it's missing
+    if (!token) {
+      token = localStorage.getItem("token"); // Retrieve token from localStorage
+      if (!token) throw new Error("Unauthorized: Token is missing");
+    }
+
+    console.log("🔑 Token being sent:", token); // Debugging
 
     const response = await axiosInstance.delete(`/announcements/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -69,4 +75,6 @@ export const deleteAnnouncement = async (id, token) => {
     console.error('❌ Error deleting announcement:', error.response?.data || error.message);
     throw error;
   }
+};
+
 };
