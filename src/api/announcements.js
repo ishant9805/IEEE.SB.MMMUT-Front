@@ -22,17 +22,23 @@ export const getAnnouncements = async () => {
 // ✅ Create a new announcement
 export const createAnnouncement = async (announcementData, token) => {
   try {
-    if (!token) throw new Error("Unauthorized: Token is missing"); // Debugging
-    console.log("🔑 Token being sent:", token); // Debugging
+    if (!token) {
+      throw new Error('Authentication token is required');
+    }
 
-    const response = await axiosInstance.post('/announcements', announcementData, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    };
 
-    console.log("✅ Announcement Created:", response.data); // Debugging
+    console.log('Sending request with headers:', config.headers); // Debug
+
+    const response = await axiosInstance.post('/', announcementData, config);
     return response.data;
   } catch (error) {
-    console.error('❌ Error creating announcement:', error.response?.data || error.message);
+    console.error('Error creating announcement:', error.response ? error.response.data : error.message);
     throw error;
   }
 };
