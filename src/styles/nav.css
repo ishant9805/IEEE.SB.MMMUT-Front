@@ -1,0 +1,12 @@
+/* Custom styles for the navbar */
+.navbar {
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+/* Ensure the mobile menu doesn't overflow */
+@media (max-width: 767px) {
+  .navbar ul {
+    z-index: 1000;
+  }
+} 
