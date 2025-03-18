@@ -14,8 +14,12 @@ export const loginAdmin = async (credentials) => {
     throw new Error(data.message || 'Login failed');
   }
 
-  // Store login status in localStorage
-  localStorage.setItem('isLoggedIn', 'true');
+  // Save the token to localStorage
+  localStorage.setItem('authToken', data.token); // Save the token with the key 'authToken'
+  localStorage.setItem('isLoggedIn', 'true'); // Save login status
+
+  console.log('Token saved:', data.token); // Debug: Log the token
+
   return data;
 };
 
