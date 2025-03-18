@@ -1,20 +1,20 @@
 import axios from 'axios';
 
-const API_URL = 'https://ieee-back.vercel.app';
+const API_URL = 'https://ieee-back.vercel.app/api';
 
 // ✅ Axios instance with global config
 const axiosInstance = axios.create({
   baseURL: API_URL,
-  withCredentials: true, // Ensures cookies are sent with requests
+  withCredentials: false, // ❌ Remove this if not using cookies for authentication
 });
 
 // ✅ Get all announcements
 export const getAnnouncements = async () => {
   try {
-    const response = await axiosInstance.get('/');
+    const response = await axiosInstance.get('/announcements');
     return response.data;
   } catch (error) {
-    console.error('Error fetching announcements:', error);
+    console.error('❌ Error fetching announcements:', error.response?.data || error.message);
     throw error;
   }
 };
@@ -22,16 +22,17 @@ export const getAnnouncements = async () => {
 // ✅ Create a new announcement
 export const createAnnouncement = async (announcementData, token) => {
   try {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,  // Include token in headers
-      },
-    };
+    if (!token) throw new Error("Unauthorized: Token is missing"); // Debugging
+    console.log("🔑 Token being sent:", token); // Debugging
 
-    const response = await axiosInstance.post('/', announcementData, config);
+    const response = await axiosInstance.post('/announcements', announcementData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    console.log("✅ Announcement Created:", response.data); // Debugging
     return response.data;
   } catch (error) {
-    console.error('Error creating announcement:', error);
+    console.error('❌ Error creating announcement:', error.response?.data || error.message);
     throw error;
   }
 };
@@ -39,16 +40,16 @@ export const createAnnouncement = async (announcementData, token) => {
 // ✅ Update an announcement
 export const updateAnnouncement = async (id, announcementData, token) => {
   try {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+    if (!token) throw new Error("Unauthorized: Token is missing");
 
-    const response = await axiosInstance.put(`/${id}`, announcementData, config);
+    const response = await axiosInstance.put(`/announcements/${id}`, announcementData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    console.log("✅ Announcement Updated:", response.data); // Debugging
     return response.data;
   } catch (error) {
-    console.error('Error updating announcement:', error);
+    console.error('❌ Error updating announcement:', error.response?.data || error.message);
     throw error;
   }
 };
@@ -56,16 +57,16 @@ export const updateAnnouncement = async (id, announcementData, token) => {
 // ✅ Delete an announcement
 export const deleteAnnouncement = async (id, token) => {
   try {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+    if (!token) throw new Error("Unauthorized: Token is missing");
 
-    const response = await axiosInstance.delete(`/${id}`, config);
+    const response = await axiosInstance.delete(`/announcements/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    console.log("✅ Announcement Deleted:", response.data); // Debugging
     return response.data;
   } catch (error) {
-    console.error('Error deleting announcement:', error);
+    console.error('❌ Error deleting announcement:', error.response?.data || error.message);
     throw error;
   }
 };
