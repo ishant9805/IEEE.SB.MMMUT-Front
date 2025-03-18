@@ -14,6 +14,9 @@ export const loginAdmin = async (credentials) => {
     throw new Error(data.message || 'Login failed');
   }
 
+  // Debug: Log the entire API response
+  console.log('API Response:', data);
+
   // Save the token to localStorage
   localStorage.setItem('authToken', data.token); // Save the token with the key 'authToken'
   localStorage.setItem('isLoggedIn', 'true'); // Save login status
