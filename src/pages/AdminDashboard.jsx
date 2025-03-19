@@ -38,10 +38,10 @@ const AdminDashboard = () => {
             <FaBullhorn className="mr-3" /> Announcements
           </Link>
           <Link
-            to="/admin/settings"
+            to="/admin/contact-submissions"
             className="flex items-center p-4 hover:bg-ieee-blue-light transition-all duration-200 ease-in-out hover:pl-6"
           >
-            <FaCog className="mr-3" /> Settings
+            <FaEnvelope className="mr-3" /> Users
           </Link>
           <button
             onClick={() => {
