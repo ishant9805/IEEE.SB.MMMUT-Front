@@ -32,16 +32,26 @@ export const loginAdmin = async (credentials) => {
 };
 
 export const logoutAdmin = async () => {
-  // Clear login status from localStorage
-  localStorage.removeItem('authToken'); // Clear the token
-  localStorage.removeItem('isLoggedIn');
+  try {
+    // Clear login status and token from localStorage
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('authToken'); // Clear the token
 
-  // Optional: Call backend logout endpoint if needed
-  await fetch(`${API_BASE_URL}/api/auth/logout`, {
-    method: 'POST',
-    credentials: 'include',
-  });
+    // Optional: Call backend logout endpoint if needed
+    const response = await fetch(`${API_BASE_URL}/api/auth/logout`, {
+      method: 'POST',
+      credentials: 'include',
+    });
 
-  // Redirect to home page
-  window.location.href = '/';
+    if (!response.ok) {
+      throw new Error('Logout failed');
+    }
+
+    // Redirect to home page
+    window.location.href = '/';
+  } catch (error) {
+    console.error('Error during logout:', error);
+    // Optionally, show an error message to the user
+    alert('Logout failed. Please try again.');
+  }
 };
