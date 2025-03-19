@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 import AdminDashboard from './pages/AdminDashboard';
+import AdminContactSubmissions from './pages/AdminContactSubmissions'; 
 import AdminAnnouncements from './pages/AdminAnnouncements';
 import DeepSeekBackground from "./components/DeepSeekBackground";
 import Contact from "./pages/Contact";
@@ -36,6 +37,7 @@ function App() {
             <Route path="/admin" element={<AdminDashboard />}>
               <Route path="dashboard" element={<div>Dashboard Content</div>} />
               <Route path="announcements" element={<AdminAnnouncements />} />
+              <Route path="contact-submissions" element={<AdminContactSubmissions />} />
               <Route path="settings" element={<div>Settings Content</div>} />
             </Route>
           </Routes>
