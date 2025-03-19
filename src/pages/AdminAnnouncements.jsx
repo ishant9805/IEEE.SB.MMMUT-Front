@@ -6,6 +6,9 @@ const AdminAnnouncements = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
 
+  // Retrieve the token from local storage
+  const token = localStorage.getItem('authToken'); // Ensure the key matches where the token is stored
+
   useEffect(() => {
     fetchAnnouncements();
   }, []);
@@ -16,13 +19,22 @@ const AdminAnnouncements = () => {
   };
 
   const handleDelete = async (id) => {
-    await deleteAnnouncement(id);
-    fetchAnnouncements();
+    try {
+      if (!token) {
+        console.error('No authentication token found');
+        return;
+      }
+
+      await deleteAnnouncement(id, token); // Pass the token here
+      fetchAnnouncements(); // Refresh the list after deletion
+    } catch (error) {
+      console.error('Error deleting announcement:', error);
+    }
   };
 
   return (
-    <div >
-      <h2 className="text-2xl font-bold text-ieee-blue mb-6 ">Manage Announcements</h2>
+    <div>
+      <h2 className="text-2xl font-bold text-ieee-blue mb-6">Manage Announcements</h2>
 
       {/* Announcement Form */}
       <AnnouncementForm

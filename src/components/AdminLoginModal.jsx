@@ -15,18 +15,30 @@ const AdminLoginModal = ({ onClose, setIsLoggedIn }) => {
     setError('');
 
     try {
-      const response = await loginAdmin(credentials); // Ensure this function is defined
-      setIsLoggedIn(true); // Update login state in Navbar
-      onClose();
+      // Call the login API
+      const response = await loginAdmin(credentials);
 
-      // Store the token in localStorage
-      localStorage.setItem('token', response.token);
+      // Debug: Log the response
+      console.log('Login Response:', response);
+
+      // Check if the token is present in the response
+      if (response.token) {
+        // Save the token to localStorage
+        localStorage.setItem('token', response.token);
+        console.log('Token saved to localStorage:', response.token);
+      }
+
+      // Update login state in the parent component (Navbar)
+      setIsLoggedIn(true);
+
+      // Close the modal
+      onClose();
 
       // Redirect to the admin dashboard
       window.location.href = '/admin/dashboard';
     } catch (error) {
-      console.error("❌ Login Failed:", error.message);
-      setError(error.message);
+      console.error('❌ Login Failed:', error.message);
+      setError(error.message || 'Login failed. Please try again.');
     } finally {
       setIsLoading(false);
     }
