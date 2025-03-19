@@ -5,14 +5,24 @@ import { FaChevronLeft, FaChevronRight, FaImages } from "react-icons/fa";
 
 const galleryImages = [
   {
-    image: "image1.jpg",
-    title: "Technical Workshop",
-    description: "Students participating in robotics workshop."
+    image: "image1.JPG",
+    title: "Glimps of Hackfest'23",
+    description: "Winners getting prizes."
   },
   {
-    image: "image2.jpg",
-    title: "IEEE Day Celebration",
-    description: "Annual IEEE day group photo session."
+    image: "image2.JPG",
+    title: "Glimps of Hackfest'23",
+    description: "Students Participating in the event"
+  },
+  {
+    image: "image3.JPG",
+    title: "Glimps of Hackfest'23",
+    description: "....."
+  },
+  {
+    image: "image4.JPG",
+    title: "Glimps of Hackfest'23",
+    description: "......"
   },
   // Add more images
 ];
