@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://ieee-back.vercel.app"; // Change if your backend runs on another port
+const API_BASE_URL = "https://ieee-back.vercel.app";
 
 export const loginAdmin = async (credentials) => {
   try {
@@ -6,7 +6,7 @@ export const loginAdmin = async (credentials) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(credentials),
-      credentials: 'include', // Include cookies if using them for authentication
+      credentials: 'include',
     });
 
     const data = await response.json();
@@ -15,23 +15,26 @@ export const loginAdmin = async (credentials) => {
       throw new Error(data.message || 'Login failed');
     }
 
-    // Debug: Log the API response
-    console.log('API Response:', data);
+    // Store token in localStorage
+    if (data.token) {
+      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('isLoggedIn', 'true'); // Set login state
+    }
 
-    // Return the response data (including token if present)
     return data;
   } catch (error) {
-    console.error('Error during login:', error);
+    console.error('Login error:', error);
     throw error;
   }
 };
 
-export const logoutAdmin = async () => {
-  // Clear login status from localStorage
+export const logoutAdmin = () => {
+  // Clear login state and token
+  localStorage.removeItem('authToken');
   localStorage.removeItem('isLoggedIn');
 
   // Optional: Call backend logout endpoint if needed
-  await fetch(`${API_BASE_URL}/api/auth/logout`, {
+  fetch(`${API_BASE_URL}/api/auth/logout`, {
     method: 'POST',
     credentials: 'include',
   });
