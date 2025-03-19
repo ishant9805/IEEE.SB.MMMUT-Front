@@ -18,6 +18,11 @@ export const loginAdmin = async (credentials) => {
     // Debug: Log the API response
     console.log('API Response:', data);
 
+    // Store the token in localStorage
+    if (data.token) {
+      localStorage.setItem('authToken', data.token); // Store the token
+    }
+
     // Return the response data (including token if present)
     return data;
   } catch (error) {
@@ -28,6 +33,7 @@ export const loginAdmin = async (credentials) => {
 
 export const logoutAdmin = async () => {
   // Clear login status from localStorage
+  localStorage.removeItem('authToken'); // Clear the token
   localStorage.removeItem('isLoggedIn');
 
   // Optional: Call backend logout endpoint if needed
