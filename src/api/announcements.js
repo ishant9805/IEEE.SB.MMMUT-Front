@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// ✅ Base URL for announcements API
+// Base URL for announcements API
 const API_URL = 'https://ieee-back.vercel.app/api/announcements';
 
-// ✅ Axios instance with global config
+// Axios instance with global config
 const axiosInstance = axios.create({
   baseURL: API_URL,
   headers: {
@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
   },
 });
 
-// ✅ Get all announcements
+// Get all announcements
 export const getAnnouncements = async () => {
   try {
     const response = await axiosInstance.get('/');
@@ -22,9 +22,11 @@ export const getAnnouncements = async () => {
   }
 };
 
-// ✅ Create a new announcement
-export const createAnnouncement = async (announcementData, token) => {
+// Create a new announcement
+export const createAnnouncement = async (announcementData) => {
   try {
+    // Retrieve token from localStorage or cookies
+    const token = localStorage.getItem('token'); // Ensure token is stored in localStorage after login
     if (!token) {
       throw new Error('Authentication token is required');
     }
@@ -45,9 +47,11 @@ export const createAnnouncement = async (announcementData, token) => {
   }
 };
 
-// ✅ Update an announcement
-export const updateAnnouncement = async (id, announcementData, token) => {
+// Update an announcement
+export const updateAnnouncement = async (id, announcementData) => {
   try {
+    // Retrieve token from localStorage or cookies
+    const token = localStorage.getItem('token'); // Ensure token is stored in localStorage after login
     if (!token) {
       throw new Error('Authentication token is required');
     }
@@ -66,9 +70,11 @@ export const updateAnnouncement = async (id, announcementData, token) => {
   }
 };
 
-// ✅ Delete an announcement
-export const deleteAnnouncement = async (id, token) => {
+// Delete an announcement
+export const deleteAnnouncement = async (id) => {
   try {
+    // Retrieve token from localStorage or cookies
+    const token = localStorage.getItem('token'); // Ensure token is stored in localStorage after login
     if (!token) {
       throw new Error('Authentication token is required');
     }
@@ -87,7 +93,7 @@ export const deleteAnnouncement = async (id, token) => {
   }
 };
 
-// ✅ Get a single announcement by ID
+// Get a single announcement by ID
 export const getAnnouncementById = async (id) => {
   try {
     const response = await axiosInstance.get(`/${id}`);
