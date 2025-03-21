@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { FaBars, FaTimes, FaHome, FaBullhorn, FaCog, FaSignOutAlt, FaEnvelope,
-  FaSpinner } from 'react-icons/fa';
+import {
+  FaBars,
+  FaTimes,
+  FaHome,
+  FaBullhorn,
+  FaEnvelope,
+  FaSignOutAlt,
+} from 'react-icons/fa';
 
 const AdminDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -18,9 +24,9 @@ const AdminDashboard = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 w-64 bg-gradient-to-b from-ieee-blue to-ieee-blue-dark text-white transform ${
+        className={`fixed md:relative inset-y-0 left-0 w-64 bg-gradient-to-b from-ieee-blue to-ieee-blue-dark text-white transform ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } md:translate-x-0 transition-transform duration-300 ease-in-out z-50 shadow-2xl`}
+        } md:translate-x-0 transition-transform duration-300 ease-in-out z-50 shadow-2xl overflow-y-auto`} // Added overflow-y-auto
       >
         <div className="pt-[6.5rem] border-b border-ieee-blue-light">
           <h2 className="text-2xl font-bold px-4">Admin Panel</h2>
@@ -44,6 +50,18 @@ const AdminDashboard = () => {
           >
             <FaEnvelope className="mr-3" /> Users
           </Link>
+          <Link
+            to="/admin/events-back"
+            className="flex items-center p-4 hover:bg-ieee-blue-light transition-all duration-200 ease-in-out hover:pl-6"
+          >
+            <FaEnvelope className="mr-3" /> Events
+          </Link>
+          <Link
+            to="/admin/admin-team"
+            className="flex items-center p-4 hover:bg-ieee-blue-light transition-all duration-200 ease-in-out hover:pl-6"
+          >
+            <FaEnvelope className="mr-3" /> Committees
+          </Link>
           <button
             onClick={() => {
               // Handle logout
@@ -57,7 +75,7 @@ const AdminDashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 md:ml-64 mt-[4.5rem]">
+      <div className="flex-1  mt-[4.5rem]">
         {/* Header */}
         <header className="bg-white shadow-sm p-4 flex justify-between items-center sticky top-0 z-40">
           <button
