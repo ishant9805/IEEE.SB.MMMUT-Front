@@ -116,10 +116,12 @@ const Home = () => {
             </p>
           </div>
         </div>
+      </div>
 
-        {/* Message from Advisor Card */}
+      {/* Message from Advisor Card - Full Width */}
+      <div className="container mx-auto p-6 bg-transparent">
         <div className="bg-white/20 backdrop-blur-sm p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 z-10 
-             border border-white/20 hover:bg-white/60 flex flex-col">
+             border border-white/20 hover:bg-white/60 flex flex-col w-full">
           <div className="flex items-center mb-4">
             <FaQuoteLeft className="text-ieee-blue text-2xl mr-2" />
             <h2 className="text-xl font-bold text-ieee-blue">Message from Advisor</h2>

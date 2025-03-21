@@ -32,9 +32,9 @@ function SampleNextArrow({ onClick }) {
     <button
       className="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 p-2 rounded-full cursor-pointer hover:bg-blue-800 transition-all duration-300 z-10 shadow-xl flex items-center justify-center"
       onClick={onClick}
-      style={{ width: '40px', height: '40px' }} // Adjust the size of the arrow
+      style={{ width: '40px', height: '40px' }}
     >
-      <FaChevronRight className="text-white text-xl" /> {/* Reduced icon size */}
+      <FaChevronRight className="text-white text-xl" />
     </button>
   );
 }
@@ -44,9 +44,9 @@ function SamplePrevArrow({ onClick }) {
     <button
       className="absolute left-2 top-1/2 -translate-y-1/2 bg-blue-600 p-2 rounded-full cursor-pointer hover:bg-blue-800 transition-all duration-300 z-10 shadow-xl flex items-center justify-center"
       onClick={onClick}
-      style={{ width: '40px', height: '40px' }} // Adjust the size of the arrow
+      style={{ width: '40px', height: '40px' }}
     >
-      <FaChevronLeft className="text-white text-xl" /> {/* Reduced icon size */}
+      <FaChevronLeft className="text-white text-xl" />
     </button>
   );
 }
@@ -62,8 +62,8 @@ const GalleryCarousel = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
-    nextArrow: <SampleNextArrow />, 
-    prevArrow: <SamplePrevArrow />, 
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1024,
@@ -83,9 +83,9 @@ const GalleryCarousel = () => {
 
       <Slider {...settings}>
         {galleryImages.map((item, index) => (
-          <div key={index} className="relative flex flex-col md:flex-row items-center gap-6 p-6">
+          <div key={index} className="flex flex-col md:flex-row items-center gap-6 p-6">
             {/* Image Section with Gradient Overlay */}
-            <div className="relative w-full md:w-1/2 h-96 rounded-xl overflow-hidden shadow-2xl">
+            <div className="w-full md:w-1/2 h-96 rounded-xl overflow-hidden shadow-2xl relative">
               <img
                 src={item.image}
                 alt={item.title}
@@ -95,7 +95,7 @@ const GalleryCarousel = () => {
             </div>
 
             {/* Content Section */}
-            <div className="w-full md:w-1/2 flex flex-col justify-center bg-white/95 backdrop-blur-lg p-8 rounded-xl shadow-lg">
+            <div className="w-full md:w-1/2 bg-white/95 backdrop-blur-lg p-8 rounded-xl shadow-lg">
               <h3 className="text-3xl font-bold text-blue-600 mb-4">{item.title}</h3>
               <p className="text-gray-700 text-lg leading-relaxed">{item.description}</p>
               <div className="mt-4 text-base text-gray-500">{index + 1} / {galleryImages.length}</div>
