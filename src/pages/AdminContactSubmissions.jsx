@@ -9,7 +9,7 @@ const AdminContactSubmissions = () => {
   const [error, setError] = useState(null);
 
   // Retrieve the token from local storage
-  const token = localStorage.getItem('authToken');
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     fetchSubmissions();
