@@ -140,81 +140,84 @@ const Home = () => {
 
 
       {/* Message from Advisor Card - Full Width */}
-      <div className="container mx-auto p-6 bg-transparent">
-        <div className="bg-white/20 backdrop-blur-sm p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 z-10 
-             border border-white/20 hover:bg-white/60 flex flex-col w-full">
-          <div className="flex items-center mb-4">
-            <FaQuoteLeft className="text-ieee-blue text-2xl mr-2" />
-            <h2 className="text-xl font-bold text-ieee-blue">Message from Advisor</h2>
+      <div className="container mx-auto p-4 md:p-6 bg-transparent max-w-4xl">
+        {/* Message from Advisor Card */}
+        <div className="bg-white/20 backdrop-blur-sm p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-white/20 mb-6">
+          <div className="flex items-center mb-3">
+            <FaQuoteLeft className="text-ieee-blue text-xl md:text-2xl mr-2" />
+            <h2 className="text-lg md:text-xl font-bold text-ieee-blue">Message from Advisor</h2>
           </div>
 
-          <div className="relative flex-grow">
-            {/* Image and text container */}
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-6">
-              <img
-                src="ProfPTiwari.jpeg" // Replace with the actual image path
-                alt="Advisor Name"
-                className="w-32 h-40 md:w-40 md:h-40 lg:w-48 lg:h-72 rounded-full border-4 border-ieee-blue 
-                 object-cover hover:scale-105 transition-transform shadow-lg"
-              />
-              <blockquote className="text-gray-700 italic flex-1 text-center md:text-left">
+          <div className="relative">
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+              {/* Image Container */}
+              <div className="w-28 h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 shrink-0">
+                <img
+                  src="ProfPTiwari.jpeg"
+                  alt="Prof. Prabhakar Tiwari"
+                  className="w-full h-full rounded-full border-4 border-ieee-blue object-cover shadow-md"
+                />
+              </div>
+
+              {/* Text Content */}
+              <blockquote className="text-gray-700 italic flex-1 text-center md:text-left text-sm md:text-base min-w-[50%]">
                 "As the Advisor of the IEEE Student Branch at MMMUT, I am thrilled to see the enthusiasm and dedication of our students. Our branch is committed to providing a platform for students to explore the latest technological advancements, engage in meaningful projects, and develop leadership skills. Together, we aim to create a community that fosters innovation and excellence. Let's continue to push the boundaries of technology and make a positive impact on the world!"
               </blockquote>
             </div>
 
             {/* Quote icon at bottom-right */}
-            <div className="absolute -bottom-4 right-0 text-ieee-blue text-4xl opacity-20">
+            <div className="absolute -bottom-2 right-0 text-ieee-blue text-3xl opacity-20">
               <FaQuoteLeft />
             </div>
           </div>
 
           {/* Name attribution */}
-          <div className="mt-6 pt-4 border-t border-white/30">
-            <p className="text-lg lg:text-xl font-semibold text-ieee-blue text-right">
+          <div className="mt-4 pt-3 border-t border-white/30">
+            <p className="text-base md:text-lg font-semibold text-ieee-blue text-right">
               Prof. Prabhakar Tiwari
             </p>
-            <p className="text-gray-600 text-sm lg:text-base text-right">
+            <p className="text-gray-600 text-xs md:text-sm text-right">
               Advisor IEEE-STB MMMUT
             </p>
           </div>
         </div>
-      </div>
 
-      {/* Message from Counselor Card - Full Width */}
-      <div className="container mx-auto p-6 bg-transparent">
-        <div className="bg-white/20 backdrop-blur-sm p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 z-10 
-             border border-white/20 hover:bg-white/60 flex flex-col w-full">
-          <div className="flex items-center mb-4">
-            <FaQuoteLeft className="text-ieee-red text-2xl mr-2" />
-            <h2 className="text-xl font-bold text-ieee-red">Message from Counselor</h2>
+        {/* Message from Counselor Card */}
+        <div className="bg-white/20 backdrop-blur-sm p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-white/20">
+          <div className="flex items-center mb-3">
+            <FaQuoteLeft className="text-ieee-red text-xl md:text-2xl mr-2" />
+            <h2 className="text-lg md:text-xl font-bold text-ieee-red">Message from Counselor</h2>
           </div>
 
-          <div className="relative flex-grow">
-            {/* Image and text container */}
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-6">
-              <img
-                src="Councellor.jpg"
-                alt="Dr. Shikha Singh"
-                className="w-32 h-40 md:w-40 md:h-40 lg:w-48 lg:h-72 rounded-full border-4 border-ieee-red 
-                 object-cover hover:scale-105 transition-transform shadow-lg"
-              />
-              <blockquote className="text-gray-700 italic flex-1 text-center md:text-left">
+          <div className="relative">
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+              {/* Image Container */}
+              <div className="w-28 h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 shrink-0">
+                <img
+                  src="Councellor.jpg"
+                  alt="Dr. Shikha Singh"
+                  className="w-full h-full rounded-full border-4 border-ieee-red object-cover shadow-md"
+                />
+              </div>
+
+              {/* Text Content */}
+              <blockquote className="text-gray-700 italic flex-1 text-center md:text-left text-sm md:text-base min-w-[50%]">
                 "Welcome to the IEEE Student Branch! We are dedicated to fostering innovation, collaboration, and excellence among students. Our mission is to provide a platform where aspiring engineers, researchers, and technology enthusiasts can come together to learn, create, and grow. Through workshops, competitions, networking opportunities, and hands-on projects, we aim to empower students with the skills and knowledge needed to shape the future of technology. Join us in this journey of exploration and discovery, and let's work together to drive meaningful change and make a lasting impact on society!"
               </blockquote>
             </div>
 
             {/* Quote icon at bottom-right */}
-            <div className="absolute -bottom-4 right-0 text-ieee-red text-4xl opacity-20">
+            <div className="absolute -bottom-2 right-0 text-ieee-red text-3xl opacity-20">
               <FaQuoteLeft />
             </div>
           </div>
 
           {/* Name attribution */}
-          <div className="mt-6 pt-4 border-t border-white/30">
-            <p className="text-lg lg:text-xl font-semibold text-ieee-red text-right">
+          <div className="mt-4 pt-3 border-t border-white/30">
+            <p className="text-base md:text-lg font-semibold text-ieee-red text-right">
               Dr. Shikha Singh
             </p>
-            <p className="text-gray-600 text-sm lg:text-base text-right">
+            <p className="text-gray-600 text-xs md:text-sm text-right">
               Counselor IEEE-STB MMMUT
             </p>
           </div>
