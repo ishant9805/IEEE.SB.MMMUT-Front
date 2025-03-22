@@ -44,7 +44,7 @@
 //         }
 //     };
 
-import React, { useState, useEffect } from 'react'; // ✅ 1. Add useEffect
+import React, { useState, useEffect } from 'react';
 import { createTeamMember, updateTeamMember } from '../api/teamApi';
 
 const TeamForm = ({ selectedMember, onSuccess }) => {
@@ -60,14 +60,13 @@ const TeamForm = ({ selectedMember, onSuccess }) => {
     });
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-    const [success, setSuccess] = useState(''); // ✅ 2. Add success state
+    const [success, setSuccess] = useState('');
 
-    // ✅ 3. Fix initialization with useEffect
     useEffect(() => {
         if (selectedMember) {
             setFormData({
                 ...selectedMember,
-                image: null // Reset image to null when editing
+                image: null // Reset image when editing
             });
         }
     }, [selectedMember]);
@@ -80,20 +79,20 @@ const TeamForm = ({ selectedMember, onSuccess }) => {
 
         const formDataToSend = new FormData();
         
-        // ✅ 4. Append fields correctly (including committeeType)
-        Object.entries(formData).forEach(([key, value]) => {
-            if (value !== null && value !== undefined) {
-                // Special handling for file upload
-                if (key === 'image' && value instanceof File) {
-                    formDataToSend.append('image', value);
-                } else {
-                    formDataToSend.append(key, value);
-                }
-            }
-        });
+        // Append all fields explicitly
+        formDataToSend.append('name', formData.name);
+        formDataToSend.append('designation', formData.designation);
+        formDataToSend.append('post', formData.post);
+        formDataToSend.append('email', formData.email);
+        formDataToSend.append('linkedin', formData.linkedin);
+        formDataToSend.append('ieeeProfile', formData.ieeeProfile);
+        formDataToSend.append('committeeType', formData.committeeType);
+        
+        if (formData.image instanceof File) {
+            formDataToSend.append('image', formData.image);
+        }
 
         try {
-            // ✅ 5. Use correct token key ('authToken' instead of 'token')
             const token = localStorage.getItem('token');
             if (!token) throw new Error('Authentication required');
 
@@ -105,7 +104,6 @@ const TeamForm = ({ selectedMember, onSuccess }) => {
                 setSuccess('Member added successfully!');
             }
 
-            // ✅ 6. Reset form after success
             setFormData({
                 name: '',
                 designation: '',
@@ -117,13 +115,10 @@ const TeamForm = ({ selectedMember, onSuccess }) => {
                 image: null,
             });
 
-            // ✅ 7. Refresh parent component
             if (onSuccess) onSuccess();
             
         } catch (error) {
-            // ✅ 8. Better error handling
-            console.error('Submission error:', error);
-            setError(error.response?.data?.message || 'Failed to save member');
+            setError(error.message || 'Failed to save member');
         } finally {
             setIsLoading(false);
         }
