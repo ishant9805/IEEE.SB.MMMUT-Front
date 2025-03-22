@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://ieee-back.vercel.app/api'; // Replace with your backend URL
+const API_URL = 'http://localhost:5000/api'; // Replace with your backend URL
 
 // Fetch all team members
 export const getTeamMembers = async () => {
@@ -18,8 +18,8 @@ export const createTeamMember = async (memberData, token) => {
     try {
         const config = {
             headers: {
-                Authorization: `Bearer ${token}`, // ✅ Include the token here
-                'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
             },
         };
         const response = await axios.post(`${API_URL}/team`, memberData, config);
@@ -36,7 +36,7 @@ export const updateTeamMember = async (id, memberData, token) => {
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`,
-                'Content-Type': 'multipart/form-data',
+                'Content-Type': 'application/json',
             },
         };
 
