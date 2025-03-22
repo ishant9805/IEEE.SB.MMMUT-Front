@@ -71,58 +71,65 @@ const TeamForm = ({ selectedMember, onSuccess }) => {
         }
     }, [selectedMember]);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-        setError('');
-        setSuccess('');
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError('');
+    setSuccess('');
 
-        const formDataToSend = new FormData();
-        
-        // Append all fields explicitly
-        formDataToSend.append('name', formData.name);
-        formDataToSend.append('designation', formData.designation);
-        formDataToSend.append('post', formData.post);
-        formDataToSend.append('email', formData.email);
-        formDataToSend.append('linkedin', formData.linkedin);
-        formDataToSend.append('ieeeProfile', formData.ieeeProfile);
-        formDataToSend.append('committeeType', formData.committeeType);
-        
-        if (formData.image instanceof File) {
-            formDataToSend.append('image', formData.image);
+    const formDataToSend = new FormData();
+    
+    // Append all fields explicitly
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('designation', formData.designation);
+    formDataToSend.append('post', formData.post);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('linkedin', formData.linkedin);
+    formDataToSend.append('ieeeProfile', formData.ieeeProfile);
+    formDataToSend.append('committeeType', formData.committeeType);
+    
+    // Check if the image exists and is a File
+    if (formData.image && formData.image instanceof File) {
+        formDataToSend.append('image', formData.image);
+    } else {
+        setError('Please upload a valid image file');
+        setIsLoading(false);
+        return;
+    }
+
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) throw new Error('Authentication required');
+
+        if (selectedMember) {
+            await updateTeamMember(selectedMember._id, formDataToSend, token);
+            setSuccess('Member updated successfully!');
+        } else {
+            await createTeamMember(formDataToSend, token);
+            setSuccess('Member added successfully!');
         }
 
-        try {
-            const token = localStorage.getItem('token');
-            if (!token) throw new Error('Authentication required');
+        // Reset form after success
+        setFormData({
+            name: '',
+            designation: '',
+            post: '',
+            email: '',
+            linkedin: '',
+            ieeeProfile: '',
+            committeeType: 'executive',
+            image: null,
+        });
 
-            if (selectedMember) {
-                await updateTeamMember(selectedMember._id, formDataToSend, token);
-                setSuccess('Member updated successfully!');
-            } else {
-                await createTeamMember(formDataToSend, token);
-                setSuccess('Member added successfully!');
-            }
+        if (onSuccess) onSuccess();
 
-            setFormData({
-                name: '',
-                designation: '',
-                post: '',
-                email: '',
-                linkedin: '',
-                ieeeProfile: '',
-                committeeType: 'executive',
-                image: null,
-            });
-
-            if (onSuccess) onSuccess();
-            
-        } catch (error) {
-            setError(error.message || 'Failed to save member');
-        } finally {
-            setIsLoading(false);
-        }
-    };
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        setError(error.response?.data?.message || 'Failed to save member');
+    } finally {
+        setIsLoading(false);
+    }
+};
 
 
     return (
