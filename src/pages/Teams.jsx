@@ -13,7 +13,7 @@ const Teams = () => {
     useEffect(() => {
         const fetchTeamData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/team'); // Add full backend URL
+                const response = await fetch('https://ieee-back.vercel.app/api/team'); // Add full backend URL
                 if (!response.ok) throw new Error('Failed to fetch');
                 const data = await response.json();
                 setTeamData(data);
