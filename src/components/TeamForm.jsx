@@ -1,49 +1,3 @@
-// import React, { useState } from 'react';
-// import { createTeamMember, updateTeamMember } from '../api/teamApi';
-
-// const TeamForm = ({ selectedMember, onSuccess }) => {
-//     const [formData, setFormData] = useState({
-//         name: '',
-//         designation: '',
-//         post: '',
-//         email: '',
-//         linkedin: '',
-//         ieeeProfile: '',
-//         committeeType: 'executive',
-//         image: null,
-//     });
-//     const [isLoading, setIsLoading] = useState(false);
-//     const [error, setError] = useState('');
-
-//     useState(() => {
-//         if (selectedMember) {
-//             setFormData(selectedMember);
-//         }
-//     }, [selectedMember]);
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         const formDataToSend = new FormData();
-
-//         // Append all fields
-//         Object.keys(formData).forEach((key) => {
-//             if (formData[key]) formDataToSend.append(key, formData[key]);
-//         });
-
-//         try {
-//             const token = localStorage.getItem('token');
-//             if (selectedMember) {
-//                 await updateTeamMember(selectedMember._id, formDataToSend, token);
-//             } else {
-//                 await createTeamMember(formDataToSend, token);
-//             }
-//             onSuccess();
-//         } catch (error) {
-//             console.error('Error submitting form:', error);
-//             setError('Failed to submit form');
-//         }
-//     };
-
 import React, { useState, useEffect } from 'react';
 import { createTeamMember, updateTeamMember } from '../api/teamApi';
 
@@ -66,71 +20,81 @@ const TeamForm = ({ selectedMember, onSuccess }) => {
         if (selectedMember) {
             setFormData({
                 ...selectedMember,
-                image: null // Reset image when editing
+                image: null // Reset image to null when editing
             });
         }
     }, [selectedMember]);
 
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError('');
-    setSuccess('');
+    const handleImageUpload = async (file) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "Event_poster"); // Replace with your Cloudinary upload preset
+        formData.append("cloud_name", "dxvyvt3bm"); // Replace with your Cloudinary cloud name
 
-    const formDataToSend = new FormData();
-    
-    // Append all fields explicitly
-    formDataToSend.append('name', formData.name);
-    formDataToSend.append('designation', formData.designation);
-    formDataToSend.append('post', formData.post);
-    formDataToSend.append('email', formData.email);
-    formDataToSend.append('linkedin', formData.linkedin);
-    formDataToSend.append('ieeeProfile', formData.ieeeProfile);
-    formDataToSend.append('committeeType', formData.committeeType);
-    
-    // Check if the image exists and is a File
-    if (formData.image && formData.image instanceof File) {
-        formDataToSend.append('image', formData.image);
-    } else {
-        setError('Please upload a valid image file');
-        setIsLoading(false);
-        return;
-    }
+        const response = await fetch(
+            "https://api.cloudinary.com/v1_1/dxvyvt3bm/image/upload", // Replace with your Cloudinary cloud name
+            {
+                method: "POST",
+                body: formData,
+            }
+        );
 
-    try {
-        const token = localStorage.getItem('token');
-        if (!token) throw new Error('Authentication required');
+        const data = await response.json();
+        return data.secure_url;
+    };
 
-        if (selectedMember) {
-            await updateTeamMember(selectedMember._id, formDataToSend, token);
-            setSuccess('Member updated successfully!');
-        } else {
-            await createTeamMember(formDataToSend, token);
-            setSuccess('Member added successfully!');
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setError('');
+        setSuccess('');
+
+        try {
+            let imageUrl = formData.image;
+
+            // If a new image is uploaded, upload it to Cloudinary
+            if (formData.image instanceof File) {
+                imageUrl = await handleImageUpload(formData.image);
+            }
+
+            const memberData = {
+                ...formData,
+                image: imageUrl,
+            };
+
+            const token = localStorage.getItem('token');
+            if (!token) throw new Error('Authentication required');
+
+            if (selectedMember) {
+                await updateTeamMember(selectedMember._id, memberData, token);
+                setSuccess('Member updated successfully!');
+            } else {
+                await createTeamMember(memberData, token);
+                setSuccess('Member added successfully!');
+            }
+
+            // Reset form after success
+            setFormData({
+                name: '',
+                designation: '',
+                post: '',
+                email: '',
+                linkedin: '',
+                ieeeProfile: '',
+                committeeType: 'executive',
+                image: null,
+            });
+
+            // Refresh parent component
+            if (onSuccess) onSuccess();
+            
+        } catch (error) {
+            console.error('Submission error:', error);
+            setError(error.response?.data?.message || 'Failed to save member');
+        } finally {
+            setIsLoading(false);
         }
-
-        // Reset form after success
-        setFormData({
-            name: '',
-            designation: '',
-            post: '',
-            email: '',
-            linkedin: '',
-            ieeeProfile: '',
-            committeeType: 'executive',
-            image: null,
-        });
-
-        if (onSuccess) onSuccess();
-
-    } catch (error) {
-        console.error('Error submitting form:', error);
-        setError(error.response?.data?.message || 'Failed to save member');
-    } finally {
-        setIsLoading(false);
-    }
-};
-
+    };
 
     return (
         <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
