@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react'; // ✅ Use useEffect
 import { createEvent, updateEvent } from '../api/events';
 
 const EventForm = ({ selectedEvent, onSuccess }) => {
@@ -11,22 +11,34 @@ const EventForm = ({ selectedEvent, onSuccess }) => {
     image: '',
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [isUploading, setIsUploading] = useState(false); // ✅ Track image upload state
   const [error, setError] = useState('');
+  const [imagePreview, setImagePreview] = useState(''); // ✅ Show image preview
 
   // Pre-fill form if editing an event
-  useState(() => {
+  useEffect(() => {
     if (selectedEvent) {
       setFormData(selectedEvent);
+      setImagePreview(selectedEvent.image); // Set image preview for editing
     }
   }, [selectedEvent]);
 
   // Handle image upload to Cloudinary
   const handleImageUpload = async (file) => {
+    if (!file) return;
+
+    // Check if the file is an image
+    if (!file.type.startsWith('image/')) {
+      throw new Error('Please upload a valid image file.');
+    }
+
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'Event_poster'); // Replace with your Cloudinary upload preset
+    formData.append('cloud_name', 'dxvyvt3bm'); // Replace with your Cloudinary cloud name
 
     try {
+      setIsUploading(true); // Start loading for image upload
       const response = await fetch('https://api.cloudinary.com/v1_1/dxvyvt3bm/image/upload', {
         method: 'POST',
         body: formData,
@@ -36,35 +48,69 @@ const EventForm = ({ selectedEvent, onSuccess }) => {
     } catch (error) {
       console.error('Error uploading image:', error);
       throw error;
+    } finally {
+      setIsUploading(false); // Stop loading for image upload
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formDataToSend = new FormData();
-  
-    // Append all fields
-    formDataToSend.append('title', formData.title);
-    formDataToSend.append('date', formData.date);
-    formDataToSend.append('time', formData.time);
-    formDataToSend.append('description', formData.description);
-    formDataToSend.append('link', formData.link);
-  
-    // Append the image file
-    if (formData.image instanceof File) {
-      formDataToSend.append('image', formData.image); // Field name must be "image"
-    }
-  
+    setIsLoading(true);
+    setError('');
+
     try {
-      const token = localStorage.getItem('token');
-      if (selectedEvent) {
-        await updateEvent(selectedEvent._id, formDataToSend, token);
-      } else {
-        await createEvent(formDataToSend, token);
+      let imageUrl = formData.image;
+
+      // If a new image is uploaded, upload it to Cloudinary
+      if (formData.image instanceof File) {
+        imageUrl = await handleImageUpload(formData.image);
       }
-      onSuccess();
-    } catch (err) {
-      console.error('Error in handleSubmit:', err);
+
+      // Prepare the data to send to the backend
+      const eventData = {
+        title: formData.title,
+        date: formData.date,
+        time: formData.time,
+        description: formData.description,
+        link: formData.link,
+        image: imageUrl, // Use the Cloudinary URL
+      };
+
+      const token = localStorage.getItem('token');
+      if (!token) throw new Error('Authentication required');
+
+      if (selectedEvent) {
+        await updateEvent(selectedEvent._id, eventData, token);
+      } else {
+        await createEvent(eventData, token);
+      }
+
+      // Reset form after success
+      setFormData({
+        title: '',
+        date: '',
+        time: '',
+        description: '',
+        link: '',
+        image: '',
+      });
+      setImagePreview(''); // Clear image preview
+
+      onSuccess(); // Trigger success callback
+    } catch (error) {
+      console.error('Error in handleSubmit:', error);
+      setError(error.message || 'Failed to save event');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Handle file input change
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData({ ...formData, image: file });
+      setImagePreview(URL.createObjectURL(file)); // Show preview of the selected image
     }
   };
 
@@ -123,20 +169,32 @@ const EventForm = ({ selectedEvent, onSuccess }) => {
           className="w-full p-2 border rounded"
           aria-label="Link"
         />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setFormData({ ...formData, image: e.target.files[0] })}
-          className="w-full p-2 border rounded"
-          aria-label="Event Poster"
-        />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Event Poster</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="w-full p-2 border rounded"
+            aria-label="Event Poster"
+          />
+          {imagePreview && (
+            <div className="mt-4">
+              <img
+                src={imagePreview}
+                alt="Event Poster Preview"
+                className="w-32 h-32 object-cover rounded-lg"
+              />
+            </div>
+          )}
+        </div>
         <button
           type="submit"
           className="bg-ieee-blue text-white px-4 py-2 rounded hover:bg-ieee-blue/90 disabled:opacity-50"
-          disabled={isLoading}
+          disabled={isLoading || isUploading} // Disable button during loading or upload
           aria-label={selectedEvent ? 'Update Event' : 'Create Event'}
         >
-          {isLoading ? 'Submitting...' : (selectedEvent ? 'Update' : 'Create')}
+          {isLoading || isUploading ? 'Submitting...' : selectedEvent ? 'Update' : 'Create'}
         </button>
       </div>
     </form>
