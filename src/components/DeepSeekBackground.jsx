@@ -113,7 +113,7 @@ const DeepSeekBackground = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          backdropFilter: 'blur(10px)', // Blur effect
+          backdropFilter: 'blur(4px)', // Blur effect
           zIndex: 1,
           pointerEvents: 'none',
         }}
