@@ -105,7 +105,7 @@ const Teams = () => {
 
 // Reusable Member Card Component
 const MemberCard = ({ member }) => (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+    <div className="bg-white/80 rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
         <img
             src={member.image}
             alt={member.name}
