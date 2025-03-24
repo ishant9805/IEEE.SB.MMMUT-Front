@@ -92,7 +92,7 @@ const Footer = () => {
               whileHover={{ scale: 1.05 }}
             >
               <FaEnvelope className="mr-3 text-ieee-red flex-shrink-0" />
-              <span>contact@ieeesbmmmut.in</span>
+              <span>contactieee.stb.mmmut@gmail.com</span>
             </motion.li>
             <motion.li
               className="flex items-center"
@@ -114,14 +114,16 @@ const Footer = () => {
           <h3 className="text-xl font-bold text-ieee-red">Connect</h3>
           <div className="grid grid-cols-2 gap-4">
             {[
-              { icon: FaFacebook, color: '#3b5998' },
-              { icon: FaTwitter, color: '#1DA1F2' },
-              { icon: FaLinkedin, color: '#0077b5' },
-              { icon: FaInstagram, color: '#E1306C' }
+              { icon: FaFacebook, color: '#3b5998', link: '#' }, // Update this with the actual Facebook link
+              { icon: FaTwitter, color: '#1DA1F2', link: '#' }, // Update if needed
+              { icon: FaLinkedin, color: '#0077b5', link: 'https://www.linkedin.com/company/ieee-stb-mmmut' },
+              { icon: FaInstagram, color: '#E1306C', link: 'https://www.instagram.com/ieeesb.mmmut?igsh=MXJ1amt3d3RtaDR5Yg==' }
             ].map((platform, index) => (
               <motion.a
                 key={index}
-                href="#"
+                href={platform.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{
                   scale: 1.1,
                   background: `linear-gradient(45deg, ${platform.color}, ${platform.color}00)`
@@ -133,6 +135,7 @@ const Footer = () => {
               </motion.a>
             ))}
           </div>
+
         </motion.div>
       </div>
 
