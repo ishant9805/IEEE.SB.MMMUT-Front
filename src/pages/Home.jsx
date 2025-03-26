@@ -222,6 +222,48 @@ const Home = () => {
             </p>
           </div>
         </div>
+
+        {/* Message from Former Counselor Card */}
+        <div className="bg-white/20 backdrop-blur-sm p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-white/20">
+          <div className="flex items-center mb-3">
+            <FaQuoteLeft className="text-indigo-400 text-xl md:text-2xl mr-2" />
+            <h2 className="text-lg md:text-xl font-bold text-indigo-400">Message from Former Counselor</h2>
+          </div>
+
+          <div className="relative">
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+              {/* Image Container */}
+              <div className="w-28 h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 shrink-0">
+                <img
+                  src="RajanMishra.jpeg"
+                  alt="Dr. Rajan Mishra"
+                  className="w-full h-full rounded-full border-4 border-blue-400 object-cover shadow-md"
+                />
+              </div>
+
+              {/* Text Content */}
+              <blockquote className="text-gray-700 italic flex-1 text-center md:text-left text-sm md:text-base min-w-[50%]">
+                "IEEE Student Branch MMMUT has always been a hub for innovation, leadership, and learning.I witnessed students take bold initiatives, work on transformative projects, and build a strong technical community. IEEE provides a unique platform to collaborate, explore new technologies, and develop essential skills that go beyond academics. I encourage all students to actively participate, engage with peers, and contribute to this ever-growing network of engineers and researchers. The future of technology lies in the hands of those who dare to innovate!"
+              </blockquote>
+            </div>
+
+            {/* Quote icon at bottom-right */}
+            <div className="absolute -bottom-2 right-0 text-blue-400 text-3xl opacity-20">
+              <FaQuoteLeft />
+            </div>
+          </div>
+
+          {/* Name attribution */}
+          <div className="mt-4 pt-3 border-t border-white/30">
+            <p className="text-base md:text-lg font-semibold text-indigo-400 text-right">
+              Dr. Rajan Mishra
+            </p>
+            <p className="text-gray-600 text-xs md:text-sm text-right">
+              Former Counselor IEEE-STB MMMUT
+            </p>
+          </div>
+        </div>
+
       </div>
 
       <GalleryCarousel />
