@@ -38,7 +38,7 @@ const Navbar = () => {
         <div className="flex items-center space-x-3">
           <Link to="/" className="flex items-center">
             <img src="/logo.png" alt="IEEE-SB-MMMUT" className="h-10" />
-            <span className="text-xl font-extrabold tracking-wide">IEEE SB MMMUT</span>
+            <span className="text-xl font-extrabold tracking-wide">IEEE STB MMMUT</span>
           </Link>
         </div>
 
