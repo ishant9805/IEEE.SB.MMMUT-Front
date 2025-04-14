@@ -1,189 +1,112 @@
-import React, { useState, useEffect, useRef } from 'react';
-import secondYearMembers from './SecondYear.json';
-import { FaLinkedin } from 'react-icons/fa';
+import React from 'react'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { FaUser,FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
+import members from "./SecondYear.json"
 
-const SecondYearCarousel = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [visibleCards, setVisibleCards] = useState(1);
-  const containerRef = useRef(null);
-  const animationRef = useRef(null);
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-
-  // Clone members to create infinite loop illusion
-  const clonedMembers = [...secondYearMembers, ...secondYearMembers, ...secondYearMembers];
-
-  useEffect(() => {
-    const updateVisibleCards = () => {
-      const containerWidth = containerRef.current?.offsetWidth || 0;
-      let cards = 1;
-      if (containerWidth >= 1024) cards = 4;
-      else if (containerWidth >= 768) cards = 3;
-      else if (containerWidth >= 640) cards = 2;
-      setVisibleCards(cards);
-    };
-
-    updateVisibleCards();
-    window.addEventListener('resize', updateVisibleCards);
-    return () => window.removeEventListener('resize', updateVisibleCards);
-  }, []);
-
-  const handlePrev = () => {
-    setCurrentSlide(prev => {
-      if (prev <= 0) {
-        // Jump to near the end (middle of cloned array) for infinite effect
-        return secondYearMembers.length * 2 - 1;
-      }
-      return prev - 1;
-    });
-  };
-
-  const handleNext = () => {
-    setCurrentSlide(prev => {
-      if (prev >= secondYearMembers.length * 2) {
-        // Jump back to near the start (middle of cloned array) for infinite effect
-        return secondYearMembers.length;
-      }
-      return prev + 1;
-    });
-  };
-
-  // Auto-slide with smooth infinite effect
-  useEffect(() => {
-    if (!isHovered) {
-      animationRef.current = requestAnimationFrame(function autoSlide() {
-        setCurrentSlide(prev => {
-          if (prev >= secondYearMembers.length * 2) {
-            // Smooth transition back to middle
-            return secondYearMembers.length;
-          }
-          return prev + 0.005; // Very small increment for ultra-smooth movement
-        });
-        animationRef.current = requestAnimationFrame(autoSlide);
-      });
-    }
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [isHovered]);
-
-  // Handle touch events for mobile swipe
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchMove = (e) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStartX.current - touchEndX.current > 50) {
-      handleNext(); // Swipe left
-    } else if (touchEndX.current - touchStartX.current > 50) {
-      handlePrev(); // Swipe right
-    }
-  };
-
-  // Calculate the translateX value for smooth infinite scrolling
-  const getTranslateX = () => {
-    const itemWidth = 100 / visibleCards;
-    const middleSectionStart = secondYearMembers.length;
-    const middleSectionEnd = secondYearMembers.length * 2;
+const MemberCard = () => {
     
-    if (currentSlide >= middleSectionEnd) {
-      // When we reach the end of cloned items, jump to middle section
-      return `-${middleSectionStart * itemWidth}%`;
-    }
-    return `-${currentSlide * itemWidth}%`;
-  };
+    const settings = {
+        className: "center",
+        arrow:true,
+        // centerMode: true,
+        centerPadding: "30px",
+        slidesToShow: 4,
+        speed: 3000,
+        autoplay: true,
+        autoplaySpeed: 0,
+        cssEase:"linear",
+        // dots:true,
+        pauseOnHover: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    centerPadding: "30px",
+                }
+            },
+            {
+                breakpoint: 900,
+                settings:{
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    centerPadding: "30px",
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    centerPadding: "30px",
+                }
+            }
+        ]
+    };
 
-  return (
-    <div className="relative w-full py-8 bg-gray-100">
-      
+    // Sample members data - replace with actual data in production
 
-      <div 
-        className="relative max-w-4xl mx-auto px-2 sm:px-4"
-        ref={containerRef}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        <div className="flex items-center justify-between">
-          <button
-            onClick={handlePrev}
-            className="text-xl sm:text-2xl font-bold text-gray-600 hover:text-gray-800 z-10 p-1 sm:p-2"
-            aria-label="Previous"
-          >
-            &#8592;
-          </button>
-
-          <div className="flex-1 overflow-hidden mx-1 sm:mx-2">
-            <div
-              className="flex transition-transform duration-300 ease-linear"
-              style={{ 
-                transform: `translateX(${getTranslateX()})`,
-                width: `${(clonedMembers.length * 100) / visibleCards}%`
-              }}
-            >
-              {clonedMembers.map((member, index) => (
-                <div
-                  key={`${member.id}-${index}`}
-                  className="px-1 sm:px-2"
-                  style={{ width: `${100 / visibleCards}%` }}
-                >
-                  <div className="bg-white p-2 rounded-lg shadow-sm flex flex-col items-center">
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 mb-2 rounded-full overflow-hidden border-2 border-gray-200">
-                      <img
-                        src={member.image}
-                        alt={member.Name}
-                        className="w-full h-full object-cover"
-                      />
+    return (
+        <div className="slider-container py-10 px-4">
+             <style jsx="true">{`
+                .slick-slide {
+                    transform: scale(0.85);
+                    transition: transform 0.3s ease;
+                }
+                
+                .slick-center {
+                    transform: scale(1);
+                }
+                
+                .slick-slide > div {
+                    margin: 0 8px;
+                }
+                
+                .slick-dots li button:before {
+                    color: #00629B;
+                }
+                
+                .slick-dots li.slick-active button:before {
+                    color: #BA0C2F;
+                }
+            `}</style> 
+            <Slider {...settings}>
+                {members.map(member => (
+                    <div key={member.id} className='mx-[40px]'>
+                        <div className="bg-transparent rounded-lg  overflow-hidden hover:shadow-xl hover:scale-110 transition-all duration-300 max-w-[320px]  h-full mx-auto">
+                            <div className="relative mt-3 h-64 overflow-hidden  rounded-t-lg">
+                                <img
+                                    src={member.image}
+                                    alt={member.Name}
+                                    className="w-[260px] m-auto h-full object-cover transform  transition-transform duration-500 rounded-full border-2 border-ieee-blue"
+                                />
+                                <div className="absolute inset-0  from-black/60 to-transparent"></div>
+                            </div>
+                            <div className="p-4 text-center">
+                                <h3 className="text-2xl font-bold mb-3 mt-1 text-gray-700">{member.Name}</h3>
+                                <p className="text-lg font-bold  text-ieee-blue ">{member.Branch} ({member.Year})</p>
+                                <p className="text-sm font-bold text-gray-500">Executive Member</p>
+                                <div className="mt-3 flex space-x-4 justify-center">
+                                    <a href={`mailto:${member.email}`} className="text-ieee-blue hover:text-ieee-red transition-colors rounded-full border-2 p-1.5 border-ieee-blue hover:border-ieee-red">
+                                        <FaEnvelope className="w-5 h-5" />
+                                    </a>
+                                    <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-ieee-blue hover:text-ieee-red transition-colors rounded-full border-2 p-1.5 border-ieee-blue hover:border-ieee-red">
+                                        <FaLinkedinIn className="w-5 h-5" />
+                                    </a>
+                                    <a href={member.Membership_ID} target="_blank" rel="noopener noreferrer" className="text-ieee-blue hover:text-ieee-red transition-colors rounded-full border-2 p-1.5 border-ieee-blue hover:border-ieee-red">
+                                        <FaUser className="w-5 h-5" /> 
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h2 className="text-xs sm:text-sm font-medium text-center line-clamp-1">
-                      {member.Name}
-                    </h2>
-                    <p className="text-[10px] sm:text-xs text-gray-500 line-clamp-1">
-                      {member.Branch}
-                    </p>
-                    <p className="text-[10px] sm:text-xs text-gray-500">
-                      {member.Year}
-                    </p>
-                    {member.linkedin !== 'NA' && member.linkedin !== 'Not made till date' && (
-                      <a
-                        href={
-                          member.linkedin.startsWith('http')
-                            ? member.linkedin
-                            : `https://www.linkedin.com/in/${member.linkedin}`
-                        }
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-1 text-blue-500 hover:text-blue-700"
-                      >
-                        <FaLinkedin className="text-sm sm:text-base" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <button
-            onClick={handleNext}
-            className="text-xl sm:text-2xl font-bold text-gray-600 hover:text-gray-800 z-10 p-1 sm:p-2"
-            aria-label="Next"
-          >
-            &#8594;
-          </button>
+                ))}
+            </Slider>
         </div>
-      </div>
-    </div>
-  );
-};
+    );
+}
 
-export default SecondYearCarousel;
+export default MemberCard
