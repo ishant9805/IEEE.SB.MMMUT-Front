@@ -1,0 +1,245 @@
+[
+  {
+    "id": 1,
+    "Name": "Alok Kumar",
+    "Branch": "EE",
+    "Roll": "2023031109",
+    "Year": "2nd Year",
+    "Membership_ID": "101236764",
+    "linkedin": "https://www.linkedin.com/in/alok-kumar-22011a280?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+    "image": "/NItin Alok.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 2,
+    "Name": "Dibyanshu Yadav",
+    "Branch": "IT",
+    "Roll": "2023071032",
+    "Year": "2nd Year",
+    "Membership_ID": "100867665",
+    "linkedin": "https://www.linkedin.com/in/dibyanshu-yadav-88995b299",
+    "image": "/dibyanshu.jpeg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 3,
+    "Name": "Sanskar Singh",
+    "Branch": "CSE",
+    "Roll": "2023021059",
+    "Year": "2nd Year",
+    "Membership_ID": "100867534",
+    "linkedin": "https://www.linkedin.com/in/sanskar-singh-218510293?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "image": "/Sanskar.jpeg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 4,
+    "Name": "Nitesh Kumar Gupta",
+    "Branch": "IT",
+    "Roll": "2023071049",
+    "Year": "2nd Year",
+    "Membership_ID": "101238031",
+    "linkedin": "https://www.linkedin.com/in/niteshg0",
+    "image": "/Nitesh Gupta.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 5,
+    "Name": "Manish Kumar Paityawal",
+    "Branch": "ECE",
+    "Roll": "2023041045",
+    "Year": "2nd Year",
+    "Membership_ID": "101236640",
+    "linkedin": "manishpaityawal",
+    "image": "/manish paityawal.jpeg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 6,
+    "Name": "Akshay Kumar",
+    "Branch": "ECE",
+    "Roll": "2023041112",
+    "Year": "2nd Year",
+    "Membership_ID": "101236678",
+    "linkedin": "NA",
+    "image": "/akshay.jpeg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 7,
+    "Name": "Abhishek Tripathi",
+    "Branch": "CE",
+    "Roll": "2023011003",
+    "Year": "2nd Year",
+    "Membership_ID": "101237034",
+    "linkedin": "https://www.linkedin.com/in/abhishek-tripathi-9637642a3?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "image": "/Abhishek Tripathi.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 8,
+    "Name": "Hemant Prajapati",
+    "Branch": "EE",
+    "Roll": "2023031033",
+    "Year": "2nd Year",
+    "Membership_ID": "101185158",
+    "linkedin": "https://www.linkedin.com/in/hemant-prajapati-939291297",
+    "image": "/Hemant Prajapati.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 9,
+    "Name": "Uday Bhan",
+    "Branch": "ECE",
+    "Roll": "2023041076",
+    "Year": "2nd Year",
+    "Membership_ID": "101215886",
+    "linkedin": "https://www.linkedin.com/in/udaybhan84",
+    "image": "/Uday Bhan.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 10,
+    "Name": "Pratap Prajapati",
+    "Branch": "EE",
+    "Roll": "2023031053",
+    "Year": "2nd Year",
+    "Membership_ID": "101188164",
+    "linkedin": "https://www.linkedin.com/in/pratap-prajapati",
+    "image": "/Pratap Prajapati.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 11,
+    "Name": "Anoop Pandey",
+    "Branch": "EE",
+    "Roll": "2023031015",
+    "Year": "2nd Year",
+    "Membership_ID": "101225496",
+    "linkedin": "https://www.linkedin.com/in/anoop-pandey-540722265",
+    "image": "/Anoop Pandey.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 12,
+    "Name": "Nilesh Kumar",
+    "Branch": "EE",
+    "Roll": "2023031047",
+    "Year": "2nd Year",
+    "Membership_ID": "101184084",
+    "linkedin": "https://www.linkedin.com/in/nilesh-kumar-9a9927294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "image": "/Nilesh Kumar.webp",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 13,
+    "Name": "Ankur yadav",
+    "Branch": "CHE",
+    "Roll": "2023061014",
+    "Year": "2nd Year",
+    "Membership_ID": "101207716",
+    "linkedin": "https://www.linkedin.com/in/ankur-yadav-28a329310",
+    "image": "/Ankur Yadav.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 14,
+    "Name": "Shivam Kashyap",
+    "Branch": "EE",
+    "Roll": "2024032012",
+    "Year": "2nd Year",
+    "Membership_ID": "101210727",
+    "linkedin": "https://www.linkedin.com/in/shivam-kashyap-iert-tech-953732277?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "image": "/Shivam Kashyap.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 23,
+    "Name": "Reena kumari",
+    "Branch": "CSE",
+    "Roll": "2023021246",
+    "Year": "2nd Year",
+    "Membership_ID": "101255578",
+    "linkedin": "https://www.linkedin.com/in/reena-kumari-7294402a3",
+    "image": "/Reena kumari.JPG",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 15,
+    "Name": "Ram Teerath Prajapati",
+    "Branch": "EE",
+    "Roll": "2023031056",
+    "Year": "2nd Year",
+    "Membership_ID": "101188157",
+    "linkedin": "https://www.linkedin.com/in/ram-teerath-prajapati-ab4894288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "image": "/Ram Teerath.png",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 16,
+    "Name": "Praveen Kumar Gupta",
+    "Branch": "EE",
+    "Roll": "2023031054",
+    "Year": "2nd Year",
+    "Membership_ID": "101188220",
+    "linkedin": "https://www.linkedin.com/in/praveen-kumar-gupta-406253294?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "image": "/Pratap Prajapati.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 17,
+    "Name": "Nikhil Kumar Jaiswal",
+    "Branch": "ECE",
+    "Roll": "2023041049",
+    "Year": "2nd Year ",
+    "Membership_ID": "Haven't received fund yet, I'll try to take my I'd till 10 April",
+    "linkedin": "https://www.linkedin.com/in/nikhil-kumar-jaiswal-b26b4726b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "image": "/nikhil jaiswal.jpg",
+    "ieeeProfile": "#"
+  },
+  
+  {
+    "id": 19,
+    "Name": "Anurag Singh",
+    "Branch": "ECE",
+    "Roll": "2023041021",
+    "Year": "2nd Year",
+    "Membership_ID": "10th of April <br>Reason: other necessary expenses and budget issues due to month end.",
+    "linkedin": "https://www.linkedin.com/in/anurag-singh-b08497299?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "image": "/Anurag singh.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 20,
+    "Name": "Prachi yadav",
+    "Branch": "ME",
+    "Roll": "2023051048",
+    "Year": "2nd Year",
+    "Membership_ID": "Not purchased yet waiting for refund",
+    "linkedin": "https://www.linkedin.com/in/prachi-yadav-0607aa297?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "image": "/PRACHI YADAV.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 21,
+    "Name": "Abhishek Kumar",
+    "Branch": "EE",
+    "Roll": "2023031004",
+    "Year": "2nd Year",
+    "Membership_ID": "101178129",
+    "linkedin": "https://www.linkedin.com/in/abhishek-kumar-b5526a341?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "image": "/ABHISHEK KUMAR.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 22,
+    "Name": "Ankul Maddheshiya",
+    "Branch": "ME",
+    "Roll": "2023051027",
+    "Year": "2nd Year",
+    "Membership_ID": "101201410",
+    "linkedin": "https://www.linkedin.com/in/ankul-maddheshiya-468752281?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "image": "/Ankul kumar.png",
+    "ieeeProfile": "#"
+  }
+]
