@@ -241,5 +241,27 @@
     "linkedin": "https://www.linkedin.com/in/ankul-maddheshiya-468752281?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     "image": "/Ankul kumar.png",
     "ieeeProfile": "#"
+  },
+  {
+    "id": 23,
+    "Name": "Rakesh Kumar Gond",
+    "Branch": "ECE",
+    "Roll": "2023041157",
+    "Year": "2nd Year",
+    "Membership_ID": "101236781",
+    "linkedin": "https://www.linkedin.com/in/rakesh-kumar-gond-24793035b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "image": "/Rakesh Kumar.jpg.jpg",
+    "ieeeProfile": "#"
+  },
+  {
+    "id": 24,
+    "Name": "Anushka Kumari Paswan",
+    "Branch": "CSE",
+    "Roll": "2023021214",
+    "Year": "2nd Year",
+    "Membership_ID": "101255786",
+    "linkedin": "https://www.linkedin.com/in/anushka-paswan-6755a5292?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    "image": "/Anushka Kumari Paswan.jp.jpg",
+    "ieeeProfile": "#"
   }
 ]
