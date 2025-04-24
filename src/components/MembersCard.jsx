@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { FaUser,FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
 import members from "./SecondYear.json"
 
-const MemberCard = () => {
+const MembersCard = () => {
     
     const settings = {
         className: "center",
@@ -109,4 +109,4 @@ const MemberCard = () => {
     );
 }
 
-export default MemberCard
+export default MembersCard
