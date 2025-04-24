@@ -116,7 +116,7 @@ const MemberCard = ({ member }) => (
         <img
             src={member.image}
             alt={member.name}
-            className="w-full h-74 object-cover"
+            className="w-full h-64 object-cover"
         />
         <div className="p-4">
             <h3 className="text-xl font-bold text-ieee-blue">{member.name}</h3>
