@@ -116,11 +116,11 @@ const MemberCard = ({ member }) => (
         <img
             src={member.image}
             alt={member.name}
-            className="w-full h-48 object-cover"
+            className="w-full h-74 object-cover"
         />
         <div className="p-4">
             <h3 className="text-xl font-bold text-ieee-blue">{member.name}</h3>
-            <p className="text-gray-600">{member.designation}</p>
+            <p className="text-ieee-red">{member.designation}</p>
             <p className="text-gray-500">{member.post}</p>
             <div className="mt-4 flex space-x-4">
                 <a href={`mailto:${member.email}`} className="text-gray-500 hover:text-ieee-red transition-colors">
