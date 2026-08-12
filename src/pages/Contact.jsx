@@ -260,7 +260,7 @@ const ContactForm = () => {
                     <FaPhone className="h-6 w-6 text-ieee-blue" />
                   </div>
                   <div className="ml-3">
-                    <p className="text-gray-600">+91 9219998403</p>
+                    <p className="text-gray-600">+91 8528855010</p>
                     <p className="text-gray-600">Mon - Fri, 9:00 AM - 5:00 PM</p>
                   </div>
                 </div>
