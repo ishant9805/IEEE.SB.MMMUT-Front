@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 import { getContactSubmissions, deleteContactSubmission } from '../api/contact';
 import ContactSubmissionForm from '../components/ContactSubmissionForm';
 
