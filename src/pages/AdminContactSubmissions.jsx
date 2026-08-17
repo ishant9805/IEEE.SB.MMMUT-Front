@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useCallback, useState, useEffect} from 'react';
 import { getContactSubmissions, deleteContactSubmission } from '../api/contact';
 import ContactSubmissionForm from '../components/ContactSubmissionForm';
 
@@ -11,22 +11,39 @@ const AdminContactSubmissions = () => {
   // Retrieve the token from local storage
   const token = localStorage.getItem('token');
 
-  useEffect(() => {
-    fetchSubmissions();
-  }, []);
+  // useEffect(() => {
+  //   fetchSubmissions();
+  // }, []);
 
-  const fetchSubmissions = async () => {
-    try {
-      const data = await getContactSubmissions(token);
-      setSubmissions(data);
-      setError(null);
-    } catch (error) {
-      console.error('Error fetching submissions:', error);
-      setError('Failed to fetch submissions. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const fetchSubmissions = async () => {
+  //   try {
+  //     const data = await getContactSubmissions(token);
+  //     setSubmissions(data);
+  //     setError(null);
+  //   } catch (error) {
+  //     console.error('Error fetching submissions:', error);
+  //     setError('Failed to fetch submissions. Please try again.');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  const fetchSubmissions = useCallback(async () => {
+  try {
+    const data = await getContactSubmissions(token);
+    setSubmissions(data);
+    setError(null);
+  } catch (error) {
+    console.error('Error fetching submissions:', error);
+    setError('Failed to fetch submissions. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+}, [token]);
+
+useEffect(() => {
+  fetchSubmissions();
+}, [fetchSubmissions]);
 
   const handleDelete = async (id) => {
     try {

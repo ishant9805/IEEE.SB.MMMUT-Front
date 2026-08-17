@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import '../styles/global.css';
 
 const HeroSection = () => {
