@@ -99,7 +99,7 @@ const Footer = () => {
               whileHover={{ scale: 1.05 }}
             >
               <FaPhone className="mr-3 text-ieee-red flex-shrink-0" />
-              <span>+91 9219998403</span>
+              <span>+91 8528855010</span>
             </motion.li>
           </ul>
         </motion.div>
