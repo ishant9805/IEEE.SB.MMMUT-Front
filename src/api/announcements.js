@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // ✅ Base URL for announcements API
-const API_URL = 'https://ieee-back.vercel.app/api/announcements';
+const API_URL = 'http://localhost:5000/api/announcements';
 
 // ✅ Axios instance with global config
 const axiosInstance = axios.create({

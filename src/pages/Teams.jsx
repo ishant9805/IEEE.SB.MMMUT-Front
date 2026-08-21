@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { FaEnvelope, FaLinkedin, FaUser } from 'react-icons/fa';
-import MembersCard from '../components/MembersCard';
+import SophomoreGallery from '../components/SophomoreGallery';
 
 const Teams = () => {
     const [teamData, setTeamData] = useState({
         chairperson: null,
         executiveCommittee: [],
         operatingCommittees: [],
+        juniorMembers: [],
+        sophomoreMembers: [],
     });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -14,7 +16,7 @@ const Teams = () => {
     useEffect(() => {
         const fetchTeamData = async () => {
             try {
-                const response = await fetch('https://ieee-back.vercel.app/api/team'); // Add full backend URL
+                const response = await fetch('http://localhost:5000/api/team'); // Add full backend URL
                 if (!response.ok) throw new Error('Failed to fetch');
                 const data = await response.json();
                 setTeamData(data);
@@ -37,7 +39,7 @@ const Teams = () => {
         return <div className="text-center mt-8 text-red-500">{error}</div>;
     }
 
-    const { chairperson, executiveCommittee, operatingCommittees } = teamData;
+    const { chairperson, executiveCommittee, operatingCommittees, juniorMembers, sophomoreMembers } = teamData;
 
     return (
         <div className="min-h-screen bg-gray-100 p-6">
@@ -101,12 +103,21 @@ const Teams = () => {
                 </div>
             </section>
 
-            <section>
-                <h2 className="text-3xl font-bold text-ieee-blue text-center mb-2">Executive Members</h2>
+            {juniorMembers && (<section>
+                <h2 className="text-3xl font-bold text-ieee-blue text-center mb-2">Junior Year Members</h2>
                 <div>
-                    <MembersCard />
+                    {juniorMembers.map((member, index) => (
+                        <MemberCard key={member._id} member={member} />
+                    ))}
                 </div>
-            </section>
+            </section>)}
+
+            {sophomoreMembers && sophomoreMembers.length > 0 && (<section>
+                <h2 className="text-3xl font-bold text-ieee-blue text-center mb-2">Sophomore Year Members</h2>
+                <div>
+                    <SophomoreGallery members={sophomoreMembers} />
+                </div>
+            </section>)}
         </div>
     );
 };
@@ -136,31 +147,5 @@ const MemberCard = ({ member }) => (
         </div>
     </div>
 );
-// Reusable Member Card Component
-// const MemberCard = ({ member }) => (
-//     <div className="bg-white/80 rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-//         <img
-//             src={member.image}
-//             alt={member.name}
-//             className="w-full h-48 object-cover"
-//         />
-//         <div className="p-4">
-//             <h3 className="text-xl font-bold text-ieee-blue">{member.name}</h3>
-//             <p className="text-gray-600">{member.designation}</p>
-//             <p className="text-gray-500">{member.post}</p>
-//             <div className="mt-4 flex space-x-4">
-//                 <a href={`mailto:${member.email}`} className="text-gray-500 hover:text-ieee-red transition-colors">
-//                     <FaEnvelope className="w-6 h-6" />
-//                 </a>
-//                 <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-ieee-red transition-colors">
-//                     <FaLinkedin className="w-6 h-6" />
-//                 </a>
-//                 <a href={member.ieeeProfile} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-ieee-red transition-colors">
-//                     <FaUser className="w-6 h-6" />
-//                 </a>
-//             </div>
-//         </div>
-//     </div>
-// );
 
 export default Teams;

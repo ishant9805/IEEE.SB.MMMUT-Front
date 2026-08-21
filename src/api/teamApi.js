@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://ieee-back.vercel.app/api'; // Replace with your backend URL
+const API_URL = 'http://localhost:5000/api'; // Replace with your backend URL
 
 // Fetch all team members
 export const getTeamMembers = async () => {
