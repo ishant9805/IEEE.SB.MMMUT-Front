@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaEnvelope, FaLinkedin, FaUser } from 'react-icons/fa';
-import SophomoreGallery from '../components/SophomoreGallery';
 import { TestimonialCarousel } from '../components/ui/profile-card-testimonial-carousel';
+import { MemberProfileCardGrid } from '../components/ui/profile-card-1';
 
 const Teams = () => {
     const [teamData, setTeamData] = useState({
@@ -100,21 +100,14 @@ const Teams = () => {
                 </div>
             </section>
 
-            {juniorMembers && juniorMembers.length > 0 && (<section>
-                <h2 className="text-3xl font-bold text-ieee-blue text-center mb-2">Junior Year Members</h2>
-                <div>
-                    {/* {juniorMembers.map((member, index) => (
-                        <MemberCard key={member._id} member={member} />
-                    ))} */}
-                    <SophomoreGallery members={juniorMembers} />
-                </div>
+            {juniorMembers && juniorMembers.length > 0 && (<section className="mt-12">
+                <h2 className="text-3xl font-bold text-ieee-blue text-center mb-8">Junior Year Members</h2>
+                <MemberProfileCardGrid members={juniorMembers} />
             </section>)}
 
-            {sophomoreMembers && sophomoreMembers.length > 0 && (<section>
-                <h2 className="text-3xl font-bold text-ieee-blue text-center mb-2">Sophomore Year Members</h2>
-                <div>
-                    <SophomoreGallery members={sophomoreMembers} />
-                </div>
+            {sophomoreMembers && sophomoreMembers.length > 0 && (<section className="mt-12">
+                <h2 className="text-3xl font-bold text-ieee-blue text-center mb-8">Sophomore Year Members</h2>
+                <MemberProfileCardGrid members={sophomoreMembers} />
             </section>)}
         </div>
     );
