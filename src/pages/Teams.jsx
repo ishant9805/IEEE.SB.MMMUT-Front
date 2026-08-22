@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaEnvelope, FaLinkedin, FaUser } from 'react-icons/fa';
 import SophomoreGallery from '../components/SophomoreGallery';
+import { TestimonialCarousel } from '../components/ui/profile-card-testimonial-carousel';
 
 const Teams = () => {
     const [teamData, setTeamData] = useState({
@@ -86,11 +87,7 @@ const Teams = () => {
             {/* Executive Committee */}
             <section className="mb-12">
                 <h2 className="text-3xl font-bold text-ieee-blue text-center mb-8">Executive Committee</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {executiveCommittee.map((member, index) => (
-                        <MemberCard key={member._id} member={member} />
-                    ))}
-                </div>
+                <TestimonialCarousel members={executiveCommittee} />
             </section>
 
             {/* Operating Committees */}
