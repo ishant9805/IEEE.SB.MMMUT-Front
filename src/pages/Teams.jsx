@@ -103,12 +103,13 @@ const Teams = () => {
                 </div>
             </section>
 
-            {juniorMembers && (<section>
+            {juniorMembers && juniorMembers.length > 0 && (<section>
                 <h2 className="text-3xl font-bold text-ieee-blue text-center mb-2">Junior Year Members</h2>
                 <div>
-                    {juniorMembers.map((member, index) => (
+                    {/* {juniorMembers.map((member, index) => (
                         <MemberCard key={member._id} member={member} />
-                    ))}
+                    ))} */}
+                    <SophomoreGallery members={juniorMembers} />
                 </div>
             </section>)}
 
