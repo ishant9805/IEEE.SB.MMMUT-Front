@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const API_URL = 'http://localhost:5000/api'; // Replace with your backend URL
+import { API_URL } from './config';
 
 // Fetch all team members
 export const getTeamMembers = async () => {
