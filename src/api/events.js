@@ -2,7 +2,7 @@
 
   // ✅ Base URL for events API
   // const API_URL = 'https://ieee-back.vercel.app/api/events';
-  const API_URL = 'https://ieee-back.vercel.app/api';
+  const API_URL = 'http://localhost:5000/api';
 
   // ✅ Axios instance with global config
   const axiosInstance = axios.create({

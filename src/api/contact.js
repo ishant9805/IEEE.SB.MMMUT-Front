@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://ieee-back.vercel.app/api/contact';
+const API_URL = 'http://localhost:5000/api/contact';
 
 // Get all contact submissions
 export const getContactSubmissions = async (token) => {

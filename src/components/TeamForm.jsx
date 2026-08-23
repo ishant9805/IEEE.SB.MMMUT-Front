@@ -9,7 +9,7 @@ const TeamForm = ({ selectedMember, onSuccess }) => {
         email: '',
         linkedin: '',
         ieeeProfile: '',
-        committeeType: 'executive',
+        committeeType: 'sophomore', // Default to 'sophomore'
         image: null,
     });
     const [isLoading, setIsLoading] = useState(false);
@@ -87,7 +87,7 @@ const TeamForm = ({ selectedMember, onSuccess }) => {
 
             // Refresh parent component
             if (onSuccess) onSuccess();
-            
+
         } catch (error) {
             console.error('Submission error:', error);
             setError(error.response?.data?.message || 'Failed to save member');
@@ -103,7 +103,7 @@ const TeamForm = ({ selectedMember, onSuccess }) => {
             </h3>
             {error && <div className="mb-4 text-red-500 text-sm">{error}</div>}
             {success && <div className="mb-4 text-green-500 text-sm">{success}</div>}
-           
+
             <div className="space-y-4">
                 <input
                     type="text"
@@ -162,6 +162,8 @@ const TeamForm = ({ selectedMember, onSuccess }) => {
                     <option value="chairperson">Chairperson</option>
                     <option value="executive">Executive Committee</option>
                     <option value="operating">Operating Committee</option>
+                    <option value="junior">Junior Year Member</option>
+                    <option value="sophomore">Sophomore Year Member</option>
                 </select>
                 <input
                     type="file"

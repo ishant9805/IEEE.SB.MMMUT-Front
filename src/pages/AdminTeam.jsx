@@ -7,6 +7,8 @@ const AdminTeam = () => {
         chairperson: {},
         executiveCommittee: [],
         operatingCommittees: [],
+        juniorMembers: [],
+        sophomoreMembers: [],
     });
     const [selectedMember, setSelectedMember] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -129,6 +131,64 @@ const AdminTeam = () => {
 
                 {/* Operating Committees */}
                 {teamData.operatingCommittees?.map((member) => (
+                    <div key={member._id} className="bg-white p-6 rounded-lg shadow-md mb-4">
+                        <h3 className="text-xl font-bold text-ieee-blue">{member.name}</h3>
+                        <p className="text-gray-600">{member.designation}</p>
+                        <p className="text-gray-500">{member.post}</p>
+                        {member.image && (
+                            <img
+                                src={member.image}
+                                alt={member.name}
+                                className="w-24 h-24 object-cover rounded-full mt-2"
+                            />
+                        )}
+                        <div className="mt-4 flex space-x-4">
+                            <button
+                                onClick={() => setSelectedMember(member)}
+                                className="text-ieee-blue hover:text-ieee-red"
+                            >
+                                Edit
+                            </button>
+                            <button
+                                onClick={() => handleDelete(member._id)}
+                                className="text-red-500 hover:text-red-700"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                ))}
+                {/* Junior Year Committees */}
+                {teamData.juniorMembers?.map((member) => (
+                    <div key={member._id} className="bg-white p-6 rounded-lg shadow-md mb-4">
+                        <h3 className="text-xl font-bold text-ieee-blue">{member.name}</h3>
+                        <p className="text-gray-600">{member.designation}</p>
+                        <p className="text-gray-500">{member.post}</p>
+                        {member.image && (
+                            <img
+                                src={member.image}
+                                alt={member.name}
+                                className="w-24 h-24 object-cover rounded-full mt-2"
+                            />
+                        )}
+                        <div className="mt-4 flex space-x-4">
+                            <button
+                                onClick={() => setSelectedMember(member)}
+                                className="text-ieee-blue hover:text-ieee-red"
+                            >
+                                Edit
+                            </button>
+                            <button
+                                onClick={() => handleDelete(member._id)}
+                                className="text-red-500 hover:text-red-700"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                ))}
+                {/* Sophomore Committees */}
+                {teamData.sophomoreMembers?.map((member) => (
                     <div key={member._id} className="bg-white p-6 rounded-lg shadow-md mb-4">
                         <h3 className="text-xl font-bold text-ieee-blue">{member.name}</h3>
                         <p className="text-gray-600">{member.designation}</p>
