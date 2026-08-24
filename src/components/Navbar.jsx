@@ -37,7 +37,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center space-x-3">
           <Link to="/" className="flex items-center">
-            <img src="/logo.webp" alt="IEEE-SB-MMMUT" className="h-10" />
+            <img src="/logo.webp" alt="IEEE-SB-MMMUT" className="h-15" />
             <span className="text-xl font-extrabold tracking-wide">IEEE STB MMMUT</span>
           </Link>
         </div>
