@@ -4,6 +4,7 @@ import { FaUser, FaEnvelope, FaMapMarkerAlt, FaPhone, FaPaperPlane,
     FaGithub, FaLinkedin, FaTwitter, FaInstagram, 
     FaUsers, FaCalendarAlt, FaMicrophone } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import { API_URL } from '../api/config';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ const ContactForm = () => {
     setIsSubmitting(true);
   
     try {
-      const response = await fetch('https://ieee-back.vercel.app/api/contact/submit', {
+      const response = await fetch(`${API_URL}/contact/submit`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaEnvelope, FaLinkedin, FaUser } from 'react-icons/fa';
 import { TestimonialCarousel } from '../components/ui/profile-card-testimonial-carousel';
 import { MemberProfileCardGrid } from '../components/ui/profile-card-1';
+import { API_URL } from '../api/config';
 
 const Teams = () => {
     const [teamData, setTeamData] = useState({
@@ -17,7 +18,7 @@ const Teams = () => {
     useEffect(() => {
         const fetchTeamData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/team'); // Add full backend URL
+                const response = await fetch(`${API_URL}/team`);
                 if (!response.ok) throw new Error('Failed to fetch');
                 const data = await response.json();
                 setTeamData(data);

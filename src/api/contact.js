@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { API_URL as API_BASE_PATH } from './config';
 
-const API_URL = 'http://localhost:5000/api/contact';
+const API_URL = `${API_BASE_PATH}/contact`;
 
 // Get all contact submissions
 export const getContactSubmissions = async (token) => {

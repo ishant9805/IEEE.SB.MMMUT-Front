@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { API_URL as API_BASE_PATH } from './config';
 
 // ✅ Base URL for announcements API
-const API_URL = 'http://localhost:5000/api/announcements';
+const API_URL = `${API_BASE_PATH}/announcements`;
 
 // ✅ Axios instance with global config
 const axiosInstance = axios.create({
