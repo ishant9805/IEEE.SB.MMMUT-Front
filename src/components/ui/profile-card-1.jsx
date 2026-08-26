@@ -65,7 +65,7 @@ export const GlassmorphismProfileCard = ({
       >
         <div className="mb-4 h-24 w-24 rounded-full border-2 border-white p-1 shadow-lg">
           <img
-            src={avatarUrl || `https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=192&h=192&q=80`}
+            src={avatarUrl || `https://plus.unsplash.com/premium_photo-1690571200236-0f9098fc6ca9?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
             alt={`${name}'s avatar`}
             className="h-full w-full rounded-full object-cover"
             loading="lazy"
